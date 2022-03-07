@@ -5,7 +5,7 @@ var router = express.Router();
 var app = express();
 
 const getData = (req, res, next) => {
-  db.execute('SELECT * FROM heroku_9fb0e1320f3eb9e.invoice;')
+  db.execute('SELECT * FROM api.test;')
     .then((data) => {
       res.send({
         success: true,
@@ -23,10 +23,10 @@ router.get('/', function (req, res, next) {
 
 router.post('/', (req, res, next) => {
   const data = req.body;
-  db.execute(
-    'INSERT INTO heroku_9fb0e1320f3eb9e.invoice (name,price) VALUES (?,?)',
-    [data.name, data.price]
-  )
+  db.execute('INSERT INTO api.test (name,price) VALUES (?,?)', [
+    data.name,
+    data.price,
+  ])
     .then(() => {
       getData(req, res);
     })
@@ -41,18 +41,14 @@ router.patch('/', (req, res, next) => {
   data.forEach((item) => {
     sql += `('${item[0]}',${item[1]},${item[2]}),`;
   });
-  let str =
-    `replace into heroku_9fb0e1320f3eb9e.invoice (name,price,id) values ${sql}`.slice(
-      0,
-      -1
-    );
+  let str = `replace into api.test (name,price,id) values ${sql}`.slice(0, -1);
   db.execute(str).then((data) => {
     getData(req, res);
   });
 });
 
 router.delete('/', (req, res, next) => {
-  db.execute('truncate table heroku_9fb0e1320f3eb9e.invoice;').then((data) => {
+  db.execute('truncate table api.test;').then((data) => {
     res.send(data[0]);
   });
 });
