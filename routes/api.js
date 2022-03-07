@@ -52,10 +52,8 @@ router.patch('/', (req, res, next) => {
 });
 
 router.delete('/', (req, res, next) => {
-  db.execute('DELETE FROM heroku_9fb0e1320f3eb9e.invoice WHERE id = ?];').then(
-    (data) => {
-      res.send(data[0]);
-    }
-  );
+  db.execute('truncate table heroku_9fb0e1320f3eb9e.invoice;').then((data) => {
+    res.send(data[0]);
+  });
 });
 module.exports = router;
