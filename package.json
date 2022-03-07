@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "watch": "nodemon --ext *"
+    "watch": "nodemon ./bin/www"
   },
   "dependencies": {
     "body-parser": "^1.19.2",
     "cookie-parser": "~1.4.4",
-    "cors": "^2.8.5",
+    "cors": "2.8.5",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
@@ -17,6 +17,8 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "mysql2": "^2.3.3",
+    "node-gyp": "9.0.0",
+    "node-pre-gyp": "0.17.0",
     "nodemon": "^2.0.15"
   },
   "devDependencies": {}
