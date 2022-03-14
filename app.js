@@ -7,6 +7,11 @@ var bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api');
 
+// swagger
+var swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs')
+// swagger
+
 var app = express();
 var cors = require('cors');
 const corsOptions = {
@@ -16,6 +21,12 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
+
+// swagger
+const swaggerDocument = YAML.load('./src/swagger.yml')   // use yml
+// const swaggerDocument = require('./src/swagger.json');   // use json
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument)); // swagger UI
+// swagger
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
