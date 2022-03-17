@@ -1,11 +1,14 @@
-openapi: 3.0.0
-info:
-  title: 站台設定
-  description: 站台設定
-  version: "1.0"
-servers:
-  - url: "http://localhost:3000/api"
-    description: Local server
-tags:
-  - name: Get Data
-    description: 取得使用者資料
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "站台設定",
+    "description": "站台設定",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api",
+      "description": "Local server"
+    }
+  ]
+}

@@ -7,10 +7,7 @@ var bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api');
 
-// swagger
-var swaggerUi = require('swagger-ui-express');
-const YAML = require('yamljs')
-// swagger
+
 
 var app = express();
 var cors = require('cors');
@@ -23,9 +20,14 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // swagger
-const swaggerDocument = YAML.load('./src/swagger.yml')   // use yml
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs')
+
+const carts = YAML.load('./src/cartsAPI_doc.yml')   // use yml
+const cash = YAML.load('./src/cashAPI_doc.yml')   // use yml
 // const swaggerDocument = require('./src/swagger.json');   // use json
-app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument)); // swagger UI
+app.use('/api/carts', swaggerUi.serve, swaggerUi.setup(carts)) // swagger UI
+// app.use('/api/cash', swaggerUi.serveFiles, swaggerUi.setup(cash)) // swagger UI
 // swagger
 
 // view engine setup
